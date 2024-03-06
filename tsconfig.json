@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./*"],
+      "@nova/*": ["nova/*"],
+      "@nova": ["nova"],
+      // "@env": ["app/env/"],
+      "@app": ["app/"],
+      "@app/*": ["app/*"],
+      "@controllers": ["app/controllers"],
+      "@controllers/*": ["app/controllers/*"],
+      "@modules": ["app/modules"],
+      "@modules/*": ["app/modules/*"],
+      "@services": ["app/services"],
+      "@services/*": ["app/services/*"],
+      "@routes": ["app/routes"],
+      "@routes/*": ["app/routes/*"],
+      "@database": ["app/database"],
+      "@database/*": ["app/database/*"],
+      "public/*": ["public/*"]
+    }
+  },
+}
