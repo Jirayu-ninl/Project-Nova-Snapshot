@@ -18,8 +18,8 @@ COPY --link package.json ./
 RUN npm install
 
 # Generate prisma schema
-RUN npm run prisma generate --accelerate
-RUN npm run prisma db push
+RUN npm run db:generate:acc
+RUN npm run db:push
 
 # Copy application code
 COPY --link . .
