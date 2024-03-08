@@ -34,4 +34,4 @@ COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_mod
 ENV NODE_ENV=production
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD [ "dumb-init", "node", "dist/main" ]
+CMD [ "dumb-init", "node", "dist/app/main" ]
