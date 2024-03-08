@@ -15,7 +15,7 @@ RUN npm install
 COPY . .
 # Generate prisma schema
 RUN npx prisma generate --accelerate
-RUN npx prisma db push
+# RUN npx prisma db push
 # Build application
 RUN npm run build
 
@@ -29,7 +29,8 @@ COPY --chown=node:node --from=build /app/dist ./dist
 COPY --chown=node:node --from=build /app/package.json .
 COPY --chown=node:node --from=build /app/package-lock.json .
 RUN npm install --omit=dev
-COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
+# COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
+RUN npx prisma db push
 # Set production environment
 ENV NODE_ENV=production
 # Start the server by default, this can be overwritten at runtime
