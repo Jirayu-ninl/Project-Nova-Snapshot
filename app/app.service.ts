@@ -1,9 +1,9 @@
-import { Injectable, Req, Res } from '@nestjs/common'
-import type { Request, Response } from 'express'
+import { Injectable, Res } from '@nestjs/common'
+import type { Response } from 'express'
 
 @Injectable()
 export class AppService {
-  root(@Req() request: Request, @Res() response: Response): void {
+  root(@Res() response: Response): void {
     response.status(200).json({
       name: 'TheIceJi NOVA',
       env: process.env.NODE_ENV,

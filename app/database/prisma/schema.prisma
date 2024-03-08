@@ -1,3 +1,10 @@
+datasource db {
+  provider  = "mongodb"
+  // url      = env("MONGODB_URI")
+  url       = env("ACCELERATE_URI")
+  directUrl = env("MONGODB_URI")
+}
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,17 +14,22 @@ generator client {
 //   output   = "../dbml"
 // }
 
-datasource db {
-  provider = "mongodb"
-  // url      = env("MONGODB_URI")
-  url       = env("ACCELERATE_URI")
-  directUrl = env("MONGODB_URI")
+generator nestgraphql {
+  provider = "prisma-nestjs-graphql"
+  output   = "../../models/@schemas"
 }
 
 model Example {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now()) @db.Timestamp
   updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  text        String
+  isPublished Boolean @default(false)
 }
 
 // ** ---------------------------  ** //

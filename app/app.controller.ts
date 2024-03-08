@@ -8,8 +8,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get(ROUTES.root)
-  root(@Req() request: Request, @Res() response: Response): void {
-    return this.appService.root(request, response)
+  root(@Res() response: Response): void {
+    return this.appService.root(response)
   }
 
   @Get(ROUTES.hello)
