@@ -29,8 +29,7 @@ COPY --chown=node:node --from=build /app/dist ./dist
 COPY --chown=node:node --from=build /app/package.json .
 COPY --chown=node:node --from=build /app/package-lock.json .
 RUN npm install --omit=dev
-# COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
-RUN npx prisma db push
+COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
 # Set production environment
 ENV NODE_ENV=production
 # Start the server by default, this can be overwritten at runtime
