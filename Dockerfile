@@ -17,12 +17,12 @@ ENV NODE_ENV=production
 COPY --link package.json ./
 RUN npm install
 
-# Copy application code
-COPY --link . .
-
 # Generate prisma schema
 RUN npm run prisma generate --accelerate
 RUN npm run prisma db push
+
+# Copy application code
+COPY --link . .
 
 # Build application
 RUN npm run build
