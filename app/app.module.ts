@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { ConfigModule } from '@nestjs/config'
-import { UploadController } from './modules/upload/upload.controller'
-import { UploadService } from './modules/upload/upload.service'
+import { UploadModule, PostsModule } from './modules'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 
@@ -15,8 +14,10 @@ import { AppService } from './app.service'
       typePaths: ['./**/*.graphql'],
       installSubscriptionHandlers: true,
     }),
+    UploadModule,
+    PostsModule,
   ],
-  controllers: [AppController, UploadController],
-  providers: [AppService, UploadService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
