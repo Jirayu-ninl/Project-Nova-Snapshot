@@ -16,6 +16,8 @@ COPY . .
 # Specify the variable you need
 ARG MONGODB_URI
 ARG ACCELERATE_URI
+ARG SENTRY_DSN
+ARG NODE_ENV
 # Generate prisma schema
 RUN yarn db
 # Build application
@@ -27,7 +29,7 @@ WORKDIR /app
 # Copy application code
 COPY --chown=node:node --from=build /app/dist ./dist
 COPY --chown=node:node --from=build /app/package.json .
-COPY --chown=node:node --from=build /app/package-lock.json .
+COPY --chown=node:node --from=build /app/yarn.lock .
 RUN yarn
 COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
 # Set production environment
