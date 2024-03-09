@@ -28,6 +28,7 @@ FROM node:${NODE_VERSION}-slim
 WORKDIR /app
 # Copy application code
 COPY --chown=node:node --from=build /app/dist ./dist
+COPY --chown=node:node --from=build /app/client ./client
 COPY --chown=node:node --from=build /app/package.json .
 COPY --chown=node:node --from=build /app/yarn.lock .
 RUN yarn
