@@ -7,10 +7,10 @@ import { AppService } from './app.service'
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get(ROUTES.root)
-  root(@Res() response: Response): void {
-    return this.appService.root(response)
-  }
+  // @Get(ROUTES.root)
+  // root(@Res() response: Response): void {
+  //   return this.appService.root(response)
+  // }
 
   @Get(ROUTES.hello)
   hello(): string {

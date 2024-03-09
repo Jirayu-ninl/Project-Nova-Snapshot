@@ -1,0 +1,8 @@
+User-Agent: *
+Allow: /
+Disallow: /test/
+
+User-Agent: GPTBot
+Disallow: /
+
+Sitemap: https://server.theiceji.com/sitemap.xml
