@@ -20,8 +20,6 @@ RUN npx prisma generate --accelerate
 RUN npm run build
 
 FROM node:${NODE_VERSION}-slim
-# Update
-RUN apt update && apt install libssl-dev dumb-init -y --no-install-recommends
 # NestJS app lives here
 WORKDIR /app
 # Copy application code
@@ -32,6 +30,7 @@ RUN npm install --omit=dev
 COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
 # Set production environment
 ENV NODE_ENV=production
+ENV SERVER_PORT=3000
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD [ "dumb-init", "node", "dist/app/main" ]
+CMD ["npm", "run","start:prod"]
