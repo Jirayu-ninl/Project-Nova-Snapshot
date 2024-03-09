@@ -13,6 +13,9 @@ COPY package.json ./
 RUN yarn
 # Copy application code
 COPY . .
+# Specify the variable you need
+ARG MONGODB_URI
+ARG ACCELERATE_URI
 # Generate prisma schema
 RUN yarn db
 # Build application
@@ -29,7 +32,6 @@ RUN yarn
 COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
 # Set production environment
 ENV NODE_ENV=production
-ENV SERVER_PORT=3000
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 CMD ["yarn","start:prod"]

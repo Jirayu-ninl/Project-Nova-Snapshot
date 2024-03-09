@@ -12,7 +12,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
   const { httpAdapter } = app.get(HttpAdapterHost)
   app.useGlobalFilters(new Sentry.Filter(httpAdapter))
-  await app.listen(process.env.SERVER_PORT || 3000)
+  await app.listen(process.env.PORT || 3000, '0.0.0.0')
   console.log('Environment:', process.env.NODE_ENV)
   console.log(`Application is running on: ${await app.getUrl()}`)
   console.log(`GraphQL Playground: ${await app.getUrl()}/graphql`)
