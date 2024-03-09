@@ -4,20 +4,19 @@
 ARG NODE_VERSION=20.11.0
 FROM node:${NODE_VERSION} as build
 
-LABEL fly_launch_runtime="NestJS"
+LABEL fly_launch_runtime="NOVA"
 
 # NestJS app lives here
 WORKDIR /app
 # Install node modules
 COPY package.json ./
-RUN npm install
+RUN yarn
 # Copy application code
 COPY . .
 # Generate prisma schema
-RUN npx prisma generate --accelerate
-# RUN npx prisma db push
+RUN yarn db
 # Build application
-RUN npm run build
+RUN yarn build
 
 FROM node:${NODE_VERSION}-slim
 # NestJS app lives here
@@ -26,11 +25,11 @@ WORKDIR /app
 COPY --chown=node:node --from=build /app/dist ./dist
 COPY --chown=node:node --from=build /app/package.json .
 COPY --chown=node:node --from=build /app/package-lock.json .
-RUN npm install --omit=dev
+RUN yarn
 COPY --chown=node:node --from=build /app/node_modules/.prisma/client  ./node_modules/.prisma/client
 # Set production environment
 ENV NODE_ENV=production
 ENV SERVER_PORT=3000
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["npm", "run","start:prod"]
+CMD ["yarn","start:prod"]

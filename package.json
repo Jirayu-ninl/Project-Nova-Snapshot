@@ -18,7 +18,7 @@
     "dev:debug": "nest start --debug --watch",
     "build": "nest build",
     "start": "nest start",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/app/main",
     "db:generate": "prisma generate",
     "db:generate:acc": "prisma generate --accelerate",
     "db:push": "prisma db push",
